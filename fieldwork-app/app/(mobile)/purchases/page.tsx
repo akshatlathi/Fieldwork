@@ -6,7 +6,7 @@ import {BottomNav} from "@/components/BottomNav";
 import {Button} from "@/components/Button";
 import {TopBar} from "@/components/TopBar";
 import {GarmentImage} from "@/components/GarmentGallery";
-import {getEscrow,getIssues,getPurchases,itemName,rememberMandate,words,yen,type IssueReport,type Mandate,type Purchase} from "@/lib/api";
+import {getEscrow,getIssues,getPurchases,itemName,issueStatusText,rememberMandate,words,yen,type IssueReport,type Mandate,type Purchase} from "@/lib/api";
 import s from "@/components/Flow.module.css";
 
 type Row=Pick<Mandate,"id"|"item_id"|"amount"|"currency"|"status">&{issue_id?:string|null};
@@ -27,6 +27,6 @@ export default function Purchases(){
    setReady(true);};
   void load();const timer=setInterval(load,10000);return()=>{live=false;clearInterval(timer);};},[]);
  return <><TopBar title="Your purchases"/><main className={s.main}><p className="fw-section-number">THE NEXT CHAPTER</p><h1 className="t-display-m">When it arrives.</h1><p className="t-body-s t-secondary">Open a purchase to accept delivery or send evidence for a person to review. Payments in this prototype are simulated.</p>{!ready&&<p role="status">Loading purchases…</p>}{error&&<p className={s.err} role="alert">{error}</p>}{ready&&!rows.length&&<section className={s.card}><ShoppingBag/><h2 className="t-heading-s">No purchases yet</h2><p className="t-body-s">Confirmed simulated holds will appear here.</p><Link href="/agent">Find a piece <ArrowUpRight size={18}/></Link></section>}{rows.map(r=><Link key={r.id} href={"/unbox/"+encodeURIComponent(r.item_id)+"?m="+encodeURIComponent(r.id)} className={s.card}><div style={{height:180,overflow:"hidden",borderRadius:16}}><GarmentImage id={r.item_id} alt="Purchased garment" className="purchase-image"/></div><h2 className="t-heading-s">Simulated {yen(r.amount,r.currency)} · {words(r.status)}</h2><p className="t-body-s">Open the arrival check →</p></Link>)}
- <section className={s.section} aria-labelledby="issues-title"><h2 className="t-heading-s" id="issues-title">All issue reports</h2>{ready&&!issues.length&&<p className="t-body-s">No issues have been raised yet.</p>}{issues.map(report=><article className={s.card} key={report.id}><h3 className="t-heading-s">{itemName(report.listing)}</h3><p className="t-body-s">{report.buyer_text||"Received-garment issue"} · {words(report.status)}</p><p className="t-meta">{new Date(report.updated_at).toLocaleString()} · {report.id}</p><Button variant="secondary" href={"/case/"+encodeURIComponent(report.item_id)+"?issue="+encodeURIComponent(report.id)}>Open report</Button></article>)}</section>
+ <section className={s.section} aria-labelledby="issues-title"><h2 className="t-heading-s" id="issues-title">All issue reports</h2>{ready&&!issues.length&&<p className="t-body-s">No issues have been raised yet.</p>}{issues.map(report=><article className={s.card} key={report.id}><h3 className="t-heading-s">{itemName(report.listing)}</h3><p className="t-body-s">{report.buyer_text||"Received-garment issue"} · {issueStatusText(report.status)}</p><p className="t-meta">{new Date(report.updated_at).toLocaleString()} · {report.id}</p><Button variant="secondary" href={"/case/"+encodeURIComponent(report.item_id)+"?issue="+encodeURIComponent(report.id)}>Open report</Button></article>)}</section>
  </main><BottomNav/></>;
 }

@@ -40,7 +40,7 @@ async def _save_upload(f: UploadFile, d: Path, max_bytes: int | None = None) -> 
         while chunk := await f.read(1024 * 1024):
             size += len(chunk)
             if max_bytes is not None and size > max_bytes:
-                raise HTTPException(413, "Video is too large. Choose a clip under 128 MiB.")
+                raise HTTPException(413, "Video is too large. Choose a clip under 50 MB.")
             stream.write(chunk)
     return p
 

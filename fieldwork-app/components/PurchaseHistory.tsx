@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getPurchases, itemName, rememberMandate, words, yen, type Purchase } from "@/lib/api";
+import { getPurchases, issueStatusText, itemName, paymentStatusText, rememberMandate, yen, type Purchase } from "@/lib/api";
 import { useDraftState } from "@/lib/useDraftState";
 import { Button } from "./Button";
 import { StatusTag } from "./StatusTag";
@@ -27,8 +27,8 @@ export function PurchaseHistory() {
   }, [setPurchases]);
   const card = (purchase: Purchase) => <article className={styles.card} key={purchase.id}>
     <div className={styles.between}><h3 className="t-heading-s">{itemName(purchase)}</h3><span className="t-num-m">{yen(purchase.amount, purchase.currency)}</span></div>
-    <StatusTag state={purchase.status === "held" ? "money" : "shown"} label={purchase.status === "held" ? "Simulated escrow held" : "Simulated · " + words(purchase.status)} />
-    {purchase.issue_status && <p className="t-body-s">Issue: {words(purchase.issue_status)}.</p>}
+    <StatusTag state={purchase.status === "held" ? "money" : "shown"} label={paymentStatusText(purchase.status)} />
+    {purchase.issue_status && <p className="t-body-s">Issue: {issueStatusText(purchase.issue_status)}.</p>}
     <p className="t-meta">{purchase.id} · {new Date(purchase.created_at * 1000).toLocaleString()}</p>
     <Button variant="secondary" href={purchase.issue_id ? `/case/${purchase.item_id}?issue=${purchase.issue_id}` : `/unbox/${purchase.item_id}?m=${purchase.id}`}>
       {purchase.issue_id ? "Open review report" : purchase.status === "held" ? "Check received garment" : "Open purchase"}

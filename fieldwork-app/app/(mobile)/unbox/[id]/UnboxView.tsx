@@ -8,7 +8,7 @@ import { CameraCapture } from "@/components/CameraCapture";
 import { IssueReportView } from "@/components/IssueReportView";
 import { TopBar } from "@/components/TopBar";
 import { GarmentImage } from "@/components/GarmentGallery";
-import { acceptDelivery, getEscrow, getIssues, getRecord, itemName, recallMandate, rememberMandate, submitIssue, yen, type ConditionRecord, type IssueReport, type Mandate } from "@/lib/api";
+import { acceptDelivery, getEscrow, getIssues, getRecord, itemName, paymentStatusText, recallMandate, rememberMandate, submitIssue, yen, type ConditionRecord, type IssueReport, type Mandate } from "@/lib/api";
 import { useDraftState } from "@/lib/useDraftState";
 import styles from "@/components/Flow.module.css";
 
@@ -78,14 +78,14 @@ export function UnboxView({ id }: { id: string }) {
       <div className="fw-arrival-image"><GarmentImage id={id} alt="Original listing garment"/></div>
       <section className={styles.section}>
         <h1 className="t-heading-m">{rec ? itemName(rec) : "Your garment"}</h1>
-        {mandate && <p className="t-body-s">Simulated escrow {yen(mandate.amount, mandate.currency)} · {mandate.status}</p>}
+        {mandate && <p className="t-body-s">Simulated payment {yen(mandate.amount, mandate.currency)} · {paymentStatusText(mandate.status)}</p>}
       </section>
       {error && <p className={styles.err} role="alert">{error}</p>}
       {busy && <AIActivity title={mode === "issue" ? "Preparing evidence for a human reviewer…" : "Recording your acceptance…"} variant="plain" />}
       {!ready && !error && <p className="t-body-s">Loading your purchase…</p>}
       {accepted ? <section className={styles.card} role="status">
         <h2 className="t-heading-s">You accepted the garment</h2>
-        <p className="t-body">{mandate ? "Simulated escrow released to the seller. No real money moved." : "Your acceptance is confirmed on this device. No escrow was attached."}</p>
+        <p className="t-body">{mandate ? "Simulated: the seller has been paid. No real money moved." : "Your acceptance is confirmed on this device. No escrow was attached."}</p>
       </section> : report ? <>
         <IssueReportView report={report} />
         <Button href={`/case/${id}?issue=${report.id}`} fullWidth>Open your report</Button>
@@ -98,7 +98,7 @@ export function UnboxView({ id }: { id: string }) {
         <h2 className="t-heading-s">What went wrong?</h2>
         <label htmlFor="buyer-issue" className="t-label">Describe the issue (optional)</label>
         <textarea id="buyer-issue" rows={3} maxLength={5000} className={styles.field} value={text} onChange={e => setText(e.target.value)} placeholder="There is a stain on the left cuff that was not shown in the listing." />
-        <p className="t-body-s">Record the front, back, collar, cuffs, hem and the area you are concerned about. Your evidence and the inspection suggestion go to a human.{mandate ? " The simulated escrow stays held." : " No escrow is attached to this demo review."}</p>
+        <p className="t-body-s">Record the front, back, collar, cuffs, hem and the area you are concerned about. Your evidence and the inspection suggestion go to a human.{mandate ? " The simulated payment stays on hold until a person decides." : " No escrow is attached to this demo review."}</p>
         <CameraCapture seconds={12} recordLabel="Record received garment" idleText="Hold the camera steady with good light." onRecorded={clip => submit(clip)} />
         <label htmlFor="received-photos" className="t-label">Or upload received-garment photos</label>
         <input id="received-photos" className={styles.field} type="file" accept="image/*" multiple onChange={e => setPhotos(Array.from(e.target.files ?? []))} />
@@ -107,7 +107,7 @@ export function UnboxView({ id }: { id: string }) {
         <Button variant="tertiary" onClick={() => setMode("choose")}>Back</Button>
       </section>)}
     </main>
-    <dialog ref={confirmation} className="fw-confirm-dialog"><h2 className="t-heading-m">Accept this delivery?</h2><p className="t-body-s">{mid?"This will release the simulated payment to the seller. If you have a concern, raise an issue instead.":"This records acceptance on this device. No simulated hold is attached."}</p><Button fullWidth loading={busy} onClick={async()=>{await allGood();confirmation.current?.close();}}>Confirm acceptance</Button><Button fullWidth variant="secondary" disabled={busy} onClick={()=>confirmation.current?.close()}>Keep checking</Button></dialog>
+    <dialog ref={confirmation} className="fw-confirm-dialog"><h2 className="t-heading-m">Accept this delivery?</h2><p className="t-body-s">{mid?"This pays the seller (simulated). If you have a concern, raise an issue instead.":"This records acceptance on this device. No simulated hold is attached."}</p><Button fullWidth loading={busy} onClick={async()=>{await allGood();confirmation.current?.close();}}>Confirm acceptance</Button><Button fullWidth variant="secondary" disabled={busy} onClick={()=>confirmation.current?.close()}>Keep checking</Button></dialog>
     <BottomNav />
   </>;
 }

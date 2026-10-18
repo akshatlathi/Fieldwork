@@ -64,7 +64,7 @@ def test_invalid_video_gives_actionable_error(tmp_path):
 
 def test_source_size_rejected_before_decode(clip,monkeypatch):
     monkeypatch.setattr(video,'SOURCE_LIMIT',1)
-    with pytest.raises(video.VideoInputError,match='128 MiB'):
+    with pytest.raises(video.VideoInputError,match='50 MB'):
         video.validate_video(clip)
 
 

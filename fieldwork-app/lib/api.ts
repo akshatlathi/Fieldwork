@@ -230,6 +230,17 @@ export const band = (b: [number, number] | null, cur = "INR") => (b ? b[0] === b
 export const gradeRange = (g: number[]) =>
   g.length ? (Math.min(...g) === Math.max(...g) ? `Grade ${g[0]} of 5` : `Grade ${Math.min(...g)}–${Math.max(...g)} of 5`) : "Grade not set";
 export const words = (s: string) => s.replace(/_/g, " ");
+/* Plain-English text for backend enum values (enums themselves are unchanged). */
+export const issueStatusText = (s: string) => ({ processing: "We are checking the photos", awaiting_review: "Waiting for a person to check", needs_evidence: "We need one more photo from you", resolved: "Decided" } as Record<string, string>)[s] ?? words(s);
+export const paymentStatusText = (s: string) => ({ held: "Simulated payment on hold until you accept delivery or a person checks an issue", released: "Simulated: seller has been paid", refunded: "Simulated: you got your money back", partial: "Simulated: part refund, seller got the rest" } as Record<string, string>)[s] ?? words(s);
+export const decisionText = (d: { action: string; refund_pct?: number }, amount?: number | null, cur = "INR") => {
+  if (d.action === "release") return "Seller gets paid. The reviewer found the item matches the listing.";
+  if (d.action === "request_evidence") return "We need one more photo from you. Payment stays on hold.";
+  const pct = d.refund_pct ?? 0;
+  if (pct >= 100) return "You get your money back" + (amount != null ? ` (${yen(amount, cur)}, simulated).` : ".");
+  if (amount != null) { const back = Math.round(amount * pct / 100); return `Part refund: you get ${yen(back, cur)} back, seller gets ${yen(amount - back, cur)} (simulated).`; }
+  return `Part refund: you get ${pct}% back, seller gets the rest.`;
+};
 export const sentence = (s: string) => { const text = words(s).trim().replace(/([^.!?]) Visual confirmation/g, "$1. Visual confirmation"); return !text || /[.!?。！？]$/.test(text) ? text : `${text}.`; };
 export const itemName = (r: { item: ConditionRecord["item"] }) => [r.item.brand, r.item.colour, r.item.type].filter(Boolean).join(" ");
 

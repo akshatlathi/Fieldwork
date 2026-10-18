@@ -2,14 +2,14 @@
 
 import { BlinkComparator } from "./BlinkComparator";
 import { StatusTag } from "./StatusTag";
-import { evidenceUrl, itemName, sentence, words, yen, type IssueReport } from "@/lib/api";
+import { decisionText, evidenceUrl, issueStatusText, itemName, sentence, words, yen, type IssueReport } from "@/lib/api";
 import { FormattedText } from "./FormattedText";
 import styles from "./Flow.module.css";
 
 export const assessmentLabel = {
-  consistent: "Appears consistent in compared views",
-  differs: "Possible condition difference",
-  cant_tell: "Insufficient evidence",
+  consistent: "The photos look like they match the listing",
+  differs: "The photos may show something different from the listing",
+  cant_tell: "The photos are not clear enough to tell",
 };
 
 export function IssueReportView({ report }: { report: IssueReport }) {
@@ -27,11 +27,11 @@ export function IssueReportView({ report }: { report: IssueReport }) {
   </section>;
   return <>
     <section className={styles.card} aria-label="Human review status">
-      <StatusTag state={report.status === "resolved" ? "shown" : "pending"} label={words(report.status)} />
+      <StatusTag state={report.status === "resolved" ? "shown" : "pending"} label={issueStatusText(report.status)} />
       <h2 className="t-heading-s">{itemName(report.listing)}</h2>
       <p className="t-meta">Report {report.id} · {new Date(report.created_at).toLocaleString()}</p>
-      {report.amount !== null && <p className="t-body-s">Simulated escrow: {yen(report.amount, report.currency)}{report.status !== "resolved" ? " · held pending human review" : " · human decision recorded"}</p>}
-      <p className="t-body-s">{report.status === "processing" ? "Your issue is saved. Evidence inspection is in progress." : report.status === "resolved" ? "A human decision has been recorded. See the response below." : "This report is saved in the human-review queue. The inspection does not decide payment."}</p>
+      {report.amount !== null && <p className="t-body-s">Simulated escrow: {yen(report.amount, report.currency)}{report.status !== "resolved" ? " · payment on hold until a person checks" : " · a person has decided"}</p>}
+      <p className="t-body-s">{report.status === "processing" ? "Your issue is saved. We are checking the photos now." : report.status === "resolved" ? "A person has made a decision. See their answer below." : "Your issue is waiting for a person to check. The automatic check does not decide who gets paid."}</p>
     </section>
     <section className={styles.card}>
       <h2 className="t-heading-s">Buyer’s statement</h2>
@@ -39,13 +39,13 @@ export function IssueReportView({ report }: { report: IssueReport }) {
       <p className="t-caption t-secondary">Reported by the buyer; not an established finding.</p>
     </section>
     <section className={styles.card}>
-      <h2 className="t-heading-s">Inspection suggestion</h2>
+      <h2 className="t-heading-s">What the automatic check suggests</h2>
       {report.inspection && report.inspection.policy_version !== "region-correspondence-v1" && <p className="t-body-s">This older inspection predates the region correspondence checks. Its crop comparisons need human review; a new evidence submission uses the updated checks.</p>}
       <p className="t-body">{assessmentLabel[report.suggested_assessment]}</p>
       <FormattedText text={report.summary} />
       <h3 className="t-label">Limits of this inspection</h3>
       <ul className={styles.bullets}>{[...new Set(report.limitations)].map((text, i) => <li key={i} className="t-body-s">{sentence(text)}</li>)}</ul>
-      {report.inspection?.closeup_request && <p className="t-body-s">Suggested close-up: {words(report.inspection.closeup_request)}. A reviewer will decide whether more evidence is needed.</p>}
+      {report.inspection?.closeup_request && <p className="t-body-s">Suggested close-up: {words(report.inspection.closeup_request)}. A person will decide whether we need another photo.</p>}
     </section>
     {report.inspection?.findings.map((finding, i) => <section className={styles.card} key={`finding-${i}`}>
       <h3 className="t-heading-s">{words(finding.what)}</h3>
@@ -66,8 +66,8 @@ export function IssueReportView({ report }: { report: IssueReport }) {
       </figure>)}</div>
     </details>
     {report.decision && <section className={styles.card}>
-      <h2 className="t-heading-s">Human reviewer’s response</h2>
-      <p className="t-body">{report.decision.action === "refund" ? `${report.decision.refund_pct}% refund` : report.decision.action === "release" ? "Release to the seller" : "More evidence requested"}</p>
+      <h2 className="t-heading-s">Reviewer’s answer</h2>
+      <p className="t-body">{decisionText(report.decision, report.amount, report.currency)}</p>
       <p className="t-body">{report.decision.note}</p><p className="t-meta">{report.decision.reviewer}</p>
     </section>}
   </>;

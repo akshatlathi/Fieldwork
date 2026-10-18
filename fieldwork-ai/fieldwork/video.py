@@ -6,7 +6,7 @@ import tempfile
 import cv2
 
 INLINE_LIMIT = 20 * 1024 * 1024
-SOURCE_LIMIT = 128 * 1024 * 1024
+SOURCE_LIMIT = 50 * 1024 * 1024
 MAX_SECONDS = 60
 
 
@@ -16,7 +16,7 @@ class VideoInputError(ValueError):
 
 def validate_video(path: Path) -> float:
     if path.stat().st_size > SOURCE_LIMIT:
-        raise VideoInputError("Video is too large. Choose a clip under 128 MiB and 60 seconds.")
+        raise VideoInputError("Video is too large. Choose a clip under 50 MB and 60 seconds.")
     cap = cv2.VideoCapture(str(path))
     try:
         fps, count = cap.get(cv2.CAP_PROP_FPS), cap.get(cv2.CAP_PROP_FRAME_COUNT)

@@ -4,7 +4,7 @@ import { useDraftState } from "@/lib/useDraftState";
 import { Button } from "@/components/Button";
 import { IssueReportView, assessmentLabel } from "@/components/IssueReportView";
 import { Wordmark } from "@/components/Logo";
-import { decideIssue, itemName, reviewQueue, words, type HumanDecision, type IssueReport } from "@/lib/api";
+import { decideIssue, decisionText, issueStatusText, itemName, reviewQueue, type HumanDecision, type IssueReport } from "@/lib/api";
 import flow from "@/components/Flow.module.css";
 import styles from "./review.module.css";
 
@@ -55,7 +55,7 @@ export default function ReviewPage() {
         {error && <p className={flow.err} role="alert">{error}</p>}
         {loaded && !reports.length && <p className="t-body">No issues have been submitted.</p>}
         {reports.map(r => <Button key={r.id} variant={selected === r.id ? "primary" : "secondary"} onClick={() => select(r.id)}>
-          {itemName(r.listing)} · {words(r.status)}
+          {itemName(r.listing)} · {issueStatusText(r.status)}
         </Button>)}
       </section>
       <section className={styles.zone} aria-label="Evidence report">
@@ -64,19 +64,19 @@ export default function ReviewPage() {
       <section className={`${styles.zone} ${styles.decision}`}>
         <h2 className="t-heading-s">Human decision</h2>
         {report && <>
-          <p className="t-body-s">Inspection suggestion: {assessmentLabel[report.suggested_assessment]}. This is not a payment decision.</p>
+          <p className="t-body-s">Automatic check: {assessmentLabel[report.suggested_assessment]}. This does not decide who gets paid.</p>
           {report.status === "processing" ? <p className="t-body">Inspection is processing. Refresh the queue when it finishes.</p> : report.status === "resolved" ? <p className="t-body">This issue has been resolved. The recorded response is in the report.</p> : <>
             <fieldset className={styles.fieldset} disabled={busy}>
               <legend className="t-label">Choose an outcome</legend>
-              {([['release', 'Release to seller'], ['refund', 'Refund buyer'], ['request_evidence', 'Request more evidence']] as const).map(([value, label]) => <label key={value} className={flow.row}>
-                <input type="radio" name="human-decision" value={value} checked={choice === value} onChange={() => setChoice(value)} />{label}
+              {([['release', 'Release to seller', 'Seller gets paid. Use when the item matches the listing.'], ['refund', 'Refund buyer', 'Buyer gets money back. Set 100 for a full refund, or less for a part refund where the seller keeps the rest.'], ['request_evidence', 'Request more evidence', 'Payment stays on hold and the buyer is asked for one more photo.']] as const).map(([value, label, help]) => <label key={value} className={flow.row}>
+                <input type="radio" name="human-decision" value={value} checked={choice === value} onChange={() => setChoice(value)} /><span>{label}<br /><small className="t-caption">{help}</small></span>
               </label>)}
               {choice === "refund" && <><label className="t-label" htmlFor="refund-pct">Refund percentage</label><input id="refund-pct" type="number" min={1} max={100} className={flow.field} value={pct || ""} onChange={e => setPct(Number(e.target.value))} /></>}
               <label className="t-label" htmlFor="reviewer-name">Your name</label><input id="reviewer-name" className={flow.field} maxLength={120} value={name} onChange={e => setName(e.target.value)} />
               <label className="t-label" htmlFor="review-note">Reason or evidence request</label><textarea id="review-note" className={flow.field} rows={4} maxLength={2000} value={note} onChange={e => setNote(e.target.value)} />
             </fieldset>
             <Button loading={busy} disabled={!choice || !name.trim() || !note.trim() || (choice === "refund" && (!Number.isInteger(pct) || pct < 1 || pct > 100))} onClick={decide}>Record human decision</Button>
-            <p className="t-caption">No outcome is selected by default. Only your recorded decision can settle an issue.</p>
+            {choice && <p className="t-body-s">The buyer and seller will read: {decisionText({ action: choice, refund_pct: pct }, report?.amount, report?.currency)}</p>}<p className="t-caption">No outcome is selected by default. Only your recorded decision can settle an issue.</p>
           </>}
         </>}
       </section>

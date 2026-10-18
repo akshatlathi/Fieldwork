@@ -56,7 +56,7 @@ Selected six-view diagnostics: same-garment geometric acceptance changed 5/6 →
 
 ### Video, coverage and comparison improvements — 18 October 2026
 
-Seller `/take` now streams video uploads with a 128 MiB bound (413 on excess), validates readable clips up to 60 seconds (422 for invalid input), and preserves the original while Vertex uses a compressed H.264/AAC analysis copy when needed. Full-resolution evidence frames still come from the original. Bundled FFmpeg is installed/locked through imageio-ffmpeg. This is local upload support; cloud ingress limits remain untested.
+Seller `/take` now streams video uploads with a 50 MB bound (413 on excess), validates readable clips up to 60 seconds (422 for invalid input), and preserves the original while Vertex uses a compressed H.264/AAC analysis copy when needed. Full-resolution evidence frames still come from the original. Bundled FFmpeg is installed/locked through imageio-ffmpeg. This is local upload support; cloud ingress limits remain untested.
 
 `GET /listings/{id}` adds optional `capture_coverage`: front/back/label statuses, valid retained evidence boxes, guidance and a limitation. ConditionRecord and Store interfaces are unchanged. The record draft schema audits these regions explicitly; only valid retained evidence supports shown coverage. Candidate selection preserves sharpness choices plus time coverage, then keeps all cited frames as listing references. The Garment Pass displays missing/unclear views; the seller page also accepts existing phone videos. Legacy listing compatibility is retained.
 
@@ -118,7 +118,7 @@ Recovered all 28,987 targeted original annotation records and reran the benchmar
 
 ### Training audit and full-data comparison — 17 October 2026
 
-See `fieldwork-ai/train/` and the reports under `fieldwork-ai/data/results/` for source/label audit, completed full SigLIP2 embeddings, validation-selected classifier comparisons and limitations. Grade results use deduplicated/consistent test labels; null defect labels are unknown by default. The stain test lacks explicit negatives and hole training lacks sufficient explicit negatives, so strict defect AP is withheld. Null-as-negative results are separate sensitivity analysis only. The app artifact was not replaced. 44 focused offline checks pass. Real-capture evaluation awaits independently labelled recordings; deployment remains on hold for manual local testing.
+See [training status](MODEL-TRAINING-STATUS.md) for source/label audit, completed full SigLIP2 embeddings, validation-selected classifier comparisons and limitations. Grade results use deduplicated/consistent test labels; null defect labels are unknown by default. The stain test lacks explicit negatives and hole training lacks sufficient explicit negatives, so strict defect AP is withheld. Null-as-negative results are separate sensitivity analysis only. The app artifact was not replaced. 44 focused offline checks pass. Real-capture evaluation awaits independently labelled recordings; deployment remains on hold for manual local testing.
 
 Partial reads of the original archive recovered its annotation index/schema and ten matching record probes. They confirm mixed mirror-null semantics (genuinely missing older hole fields versus explicit `None` in later source records). Per-record annotation recovery is required before defect benchmarks can be treated as source-backed.
 

@@ -22,7 +22,7 @@ export function PurchaseControls({ itemId, askingPrice, negotiationEnabled = fal
   const bought = useBought(itemId);
   if (bought) return <div className={styles.section}><p role="status"><strong>You bought this</strong></p><Button href={bought.href}>View your purchase</Button></div>;
   if (!askingPrice) return <p className="t-body-s">The seller must set an asking price before purchase.</p>;
-  if (held) return <div className={styles.section}><p role="status">Simulated escrow is held until you accept delivery or a human reviews an issue.</p><Button href={`/unbox/${itemId}`}>Check received garment</Button></div>;
+  if (held) return <div className={styles.section}><p role="status">Simulated payment is on hold. It goes to the seller when you accept delivery, or a person decides if you report an issue.</p><Button href={`/unbox/${itemId}`}>Check received garment</Button></div>;
   return <div className={styles.section}>
     {error && <p className={styles.err} role="alert">{error}</p>}
     <Button loading={busy} onClick={() => purchase(askingPrice)}>Confirm purchase · hold {yen(askingPrice, "INR")}</Button>

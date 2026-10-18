@@ -21,7 +21,7 @@ export default function HomePage(){
  {error&&<div className={s.service} role="status"><p>Live listings are unavailable.</p><p className="fw-disclosure">{error}</p><button onClick={load}><RotateCcw size={14}/>Try again</button></div>}
  {!loading&&!error&&!shown.length&&<p className="fw-disclosure">{items.length?"No pieces match this search. Try a broader description.":"No published pieces yet. Capture a garment to start."}</p>}
  <Link href="/agent" className={s.agent}><Sparkles size={19}/><div><strong>Looking for something specific?</strong><span>Tell your agent what matters.</span></div><ArrowUpRight size={20}/></Link>
- <Link href="/help" className={s.agent}><Scale size={19}/><div><strong>Help and issue history</strong><span>Track pending human reviews, requested evidence and decisions.</span></div><ArrowUpRight size={20}/></Link>
+ <Link href="/help" className={s.agent}><Scale size={19}/><div><strong>Help and issue history</strong><span>See where your issues stand and what was decided.</span></div><ArrowUpRight size={20}/></Link>
   <div className={s.editorial}><span>01 / THE FIELDWORK WAY</span><h2>Look closer.<br/>Decide with context.</h2><p>What is shown, what the seller says, and what a photo cannot tell you—kept distinct.</p><Link href="/sell">Create a Garment Pass <ArrowUpRight size={16}/></Link></div>
  </main><BottomNav/></>;
 }
