@@ -49,15 +49,13 @@ The Buy page includes saved purchases recovered from the backend, and Sell inclu
 
 Open `/help` for pending reports and issue history. The local prototype history is shared; buyer ownership authentication remains unfinished. Existing funded test mandates keep their original amounts/currencies and are not converted.
 
-See [the local workflow audit](LOCAL-WORKFLOW-AUDIT.md) for the ten reported issues, fixes, evidence and remaining limitations.
-
 ## Live demo (Google Cloud Run, asia-southeast1)
 
 - The app, API and reviewer-console links are given in the submission form.
 - The reviewer console (`/review`) needs a reviewer key, which is supplied in the submission notes, never in this repository.
 - Listings with ids starting `fx_` are hand-made sample fixtures; listings starting `g_` were created through the seller flow.
 - Payments are simulated. No real money moves. There is no per-user authentication in this prototype.
-- Video limit is 50 MB (app, API, video.py). Note: Cloud Run's HTTP/1 ingress caps a request at 32 MiB, so on the live service a 50 MB upload also needs HTTP/2 end-to-end (not configured; uvicorn has no h2c). Locally 50 MB works.
+- The live service accepts about 30 MiB per request (Cloud Run limit), so use the in-app recorder or a short clip.
 
 ## Deploy
 
@@ -77,12 +75,9 @@ This enables the required APIs and creates the runtime service account, bucket, 
 | `fieldwork-ai/train/` | Dataset/label audit, embeddings, classifier fitting and evaluation |
 | `fieldwork-ai/eval/` | Component experiments and workflow evaluation tools |
 | [AI-ARCHITECTURE.md](AI-ARCHITECTURE.md) | Current contracts, implementation changes and pipeline |
-| [WORKFLOW-ASSESSMENT.md](WORKFLOW-ASSESSMENT.md) | Observed strengths, weaknesses and priorities |
-| [MODEL-TRAINING-STATUS.md](MODEL-TRAINING-STATUS.md) | Training results, model-promotion decisions and limitations |
 | [CAPTURE-GUIDE.md](CAPTURE-GUIDE.md) | Capture protocol for independently labelled workflow testing |
 | [Evaluation plan](fieldwork-ai/eval/EVALUATION-PLAN.md) | Component and end-to-end evaluation protocol |
 | [Data/artifact policy](DATA-AND-ARTIFACTS.md) | Included reports and excluded local datasets/media |
-| `research/` | Problem-first market and user research (historical) |
 
 ## Checks
 
@@ -92,7 +87,7 @@ From `fieldwork-ai/` in the active environment:
 python -m pytest tests/test_defect_sequence.py tests/test_regional_defects.py tests/test_image_orientation.py tests/test_evidence_integrity.py -q
 ```
 
-The local audit passed 147 regression checks and 12 separately run legacy harness checks, plus a frontend production build and an isolated live seller-to-human-review test. They check evidence/state handling, not model accuracy. Other tests may require local datasets, model downloads or live Gemini access; read the relevant evaluator instructions before running them.
+These check evidence/state handling, not model accuracy. Other tests may require local datasets, model downloads or live Gemini access; read the relevant evaluator instructions before running them.
 
 ## Current limits
 
