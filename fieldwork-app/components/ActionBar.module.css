@@ -1,0 +1,14 @@
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fw-space-2);
+  margin-top: auto;
+  padding: var(--fw-space-3) var(--fw-page-gutter-mobile) calc(var(--fw-space-3) + env(safe-area-inset-bottom));
+  background: var(--fw-surface-canvas);
+  border-top: var(--fw-border-default);
+}
+
+.note { margin: 0; text-align: center; color: var(--fw-text-secondary); }

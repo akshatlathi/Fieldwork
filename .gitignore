@@ -1,0 +1,57 @@
+# Local credentials and machine state (never commit authentication material).
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+application_default_credentials.json
+service-account*.json
+service_account*.json
+.DS_Store
+**/.git/
+
+# Dependencies, caches and generated builds.
+node_modules/
+.next/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+*.tsbuildinfo
+.uv-cache/
+build/
+dist/
+
+# Runtime user uploads, local transactions and model-call logs.
+fieldwork-ai/store/
+fieldwork-ai/logs/
+
+# Keep raw datasets, embeddings, captures, candidate weights and generated media
+# local. Track capture templates and evaluation documentation explicitly below.
+fieldwork-ai/data/*
+!fieldwork-ai/data/capture-kit/
+fieldwork-ai/data/capture-kit/**
+!fieldwork-ai/data/capture-kit/**/
+!fieldwork-ai/data/capture-kit/**/*.md
+!fieldwork-ai/data/capture-kit/**/*.template.json
+!fieldwork-ai/data/capture-kit/**/truth.template.json
+!fieldwork-ai/data/capture-kit/**/split.txt
+!fieldwork-ai/data/results/
+fieldwork-ai/data/results/**
+!fieldwork-ai/data/results/**/
+!fieldwork-ai/data/results/**/*.md
+# All contents inside runtime stores/logs remain excluded, including Markdown.
+fieldwork-ai/data/results/**/store/
+fieldwork-ai/data/results/**/logs/
+fieldwork-ai/data/results/**/context-logs/
+

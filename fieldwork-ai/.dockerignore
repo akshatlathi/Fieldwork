@@ -1,0 +1,10 @@
+.venv
+data
+store
+logs
+tests
+eval
+train
+__pycache__
+*.pyc
+.env*

@@ -1,0 +1,24 @@
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fw-touch-min);
+  height: var(--fw-touch-min);
+  border: 0;
+  border-radius: var(--fw-radius-control);
+  background: transparent;
+  color: var(--fw-text-primary);
+  transition: background var(--fw-dur-micro) var(--fw-ease);
+}
+.iconButton:hover { background: var(--fw-surface-inset); }
+.iconButton:active { background: var(--fw-surface-inset); }
+.iconButton:disabled { color: var(--fw-text-quiet); cursor: not-allowed; }
+.onDark { color: var(--fw-text-on-dark); }
+.onDark:hover { background: rgba(250, 248, 243, 0.12); }
+.glass {
+  background: var(--fw-glass-dark-bg);
+  border: 1px solid var(--fw-glass-dark-border);
+  backdrop-filter: blur(4px);
+  color: var(--fw-text-on-dark);
+}
+.glass:hover { background: rgba(23, 28, 25, 0.72); }

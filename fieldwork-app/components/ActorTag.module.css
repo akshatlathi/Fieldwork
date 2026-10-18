@@ -1,0 +1,48 @@
+.actor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fw-space-2);
+  color: var(--fw-text-primary);
+}
+
+.ai {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--fw-space-6);
+  height: var(--fw-space-5);
+  padding: 0 var(--fw-space-1);
+  border: 1px solid var(--fw-hairline-strong);
+  border-radius: var(--fw-radius-sm);
+  background: var(--fw-surface-inset);
+  color: var(--fw-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fw-space-5);
+  height: var(--fw-space-5);
+  border: 1px solid var(--fw-geometry);
+  border-radius: var(--fw-radius-sm);
+  color: var(--fw-text-secondary);
+}
+
+.human {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fw-space-5);
+  height: var(--fw-space-5);
+  border-radius: 50%;
+  background: var(--fw-surface-dark);
+  color: var(--fw-text-on-dark);
+  font-size: var(--fw-fs-meta);
+  line-height: 1;
+}
+
+.text { font-weight: 600; }
+.detail { font-weight: 400; color: var(--fw-text-secondary); }

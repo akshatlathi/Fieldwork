@@ -1,0 +1,14 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fw-space-1);
+  padding: var(--fw-space-1) var(--fw-space-2);
+  border: 1px solid var(--tag-border);
+  border-radius: var(--fw-radius-pill);
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  white-space: nowrap;
+}
+.sm { padding: 2px var(--fw-space-2); }
+.sm span { font-size: var(--fw-fs-meta); line-height: var(--fw-lh-meta); }
+.tag svg { flex: none; }

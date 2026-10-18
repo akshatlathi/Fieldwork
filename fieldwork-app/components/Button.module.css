@@ -1,0 +1,86 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fw-space-2);
+  min-height: var(--fw-touch-min);
+  padding: var(--fw-space-3) var(--fw-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--fw-radius-control);
+  background: transparent;
+  color: var(--fw-text-primary);
+  max-width: 100%;
+  text-align: center;
+  transition: background var(--fw-dur-micro) var(--fw-ease), border-color var(--fw-dur-micro) var(--fw-ease),
+    transform var(--fw-dur-instant) var(--fw-ease);
+}
+
+.full { width: 100%; }
+.md { padding: var(--fw-space-3) var(--fw-space-4); }
+
+/* PRIMARY */
+.primary {
+  background: linear-gradient(145deg,#65584B,#302820);
+  color: var(--fw-btn-primary-fg);
+  border-color: #FFFFFF70;
+  box-shadow: 0 7px 18px #4B362026,inset 0 1px 0 #FFFFFF45;
+}
+.primary:hover { background: var(--fw-btn-primary-bg-hover); }
+.primary:active { background: var(--fw-btn-primary-bg-hover); transform: translateY(1px); }
+.primary.onDark { background: var(--fw-neutral-paper); color: var(--fw-brand-forest); }
+.primary.onDark:hover { background: var(--fw-neutral-inset); }
+
+/* SECONDARY */
+.secondary {
+  background: linear-gradient(140deg,#FFFFFFD9,#F3EBDFB8);
+  border-color: var(--fw-hairline-strong);
+  color: var(--fw-text-primary);
+}
+.secondary:hover { background: var(--fw-surface-inset); }
+.secondary:active { background: var(--fw-surface-inset); transform: translateY(1px); }
+.secondary.onDark { background: transparent; border-color: var(--fw-camera-line-quiet); color: var(--fw-text-on-dark); }
+.secondary.onDark:hover { background: rgba(250, 248, 243, 0.10); }
+
+/* TERTIARY */
+.tertiary {
+  padding: var(--fw-space-3);
+  color: var(--fw-brand-mineral);
+}
+.tertiary:hover { background: var(--fw-chip-selected-bg); }
+.tertiary:active { background: var(--fw-chip-selected-bg); }
+.tertiary.onDark { color: var(--fw-text-on-dark); }
+.tertiary.onDark:hover { background: rgba(250, 248, 243, 0.10); }
+
+/* DESTRUCTIVE: only for real destructive actions */
+.destructive {
+  background: var(--fw-surface-base);
+  border-color: var(--fw-differs-border);
+  color: var(--fw-differs-fg);
+}
+.destructive:hover { background: var(--fw-differs-bg); }
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  background: var(--fw-surface-inset);
+  border-color: var(--fw-hairline);
+  color: var(--fw-text-quiet);
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+.tertiary:disabled { background: transparent; border-color: transparent; }
+
+.loading { cursor: progress; }
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

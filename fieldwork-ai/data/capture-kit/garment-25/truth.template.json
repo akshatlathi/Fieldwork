@@ -1,0 +1,29 @@
+{
+  "garment_id": "garment-25",
+  "comparison_group": "garment-25",
+  "split": "development",
+  "seller_video": "take.mp4",
+  "seller_photos": [
+    "photo-1.jpg",
+    "photo-2.jpg",
+    "photo-3.jpg"
+  ],
+  "code": null,
+  "received_video": "unbox/take.mp4",
+  "received_photos": [],
+  "same_garment": null,
+  "actual_change": null,
+  "expected_assessment": "FILL_ME",
+  "known_flaws": [],
+  "changes": [],
+  "buyer_questions": [
+    {
+      "question": "Can you establish how the garment smells?",
+      "expected_state": "cant_judge",
+      "reference_answer": "Smell cannot be established from these photos or video."
+    }
+  ],
+  "reference_notes": "",
+  "reference_reviewers": [],
+  "synthetic": false
+}

@@ -1,0 +1,53 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  border: var(--fw-border-default);
+  border-radius: var(--fw-radius-card);
+  background: var(--fw-surface-base);
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--fw-space-5) 1fr;
+  column-gap: var(--fw-space-3);
+  padding: var(--fw-space-4);
+  border-top: var(--fw-border-subtle);
+}
+.row:first-child { border-top: 0; }
+.compact { padding: var(--fw-space-3) var(--fw-space-4); }
+
+.icon { padding-top: 2px; }
+
+.body { display: flex; flex-direction: column; gap: var(--fw-space-1); min-width: 0; }
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fw-space-1) var(--fw-space-2);
+}
+
+.title { margin: 0; font-weight: 600; }
+.support { color: var(--fw-text-secondary); }
+.source { color: var(--fw-text-quiet); }
+
+.see {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--fw-touch-min);
+  margin: 0 calc(var(--fw-space-3) * -1);
+  padding: 0 var(--fw-space-3);
+  border: 0;
+  border-radius: var(--fw-radius-control);
+  background: transparent;
+  color: var(--fw-brand-mineral);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.see:hover { background: var(--fw-chip-selected-bg); }
+.compact .see { min-height: var(--fw-touch-min); }
+
+.photo { padding-bottom: var(--fw-space-2); }

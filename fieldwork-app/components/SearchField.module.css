@@ -1,0 +1,22 @@
+.form { position: relative; }
+
+.icon {
+  position: absolute;
+  left: var(--fw-space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fw-text-quiet);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  height: var(--fw-touch-min);
+  padding: 0 var(--fw-space-4) 0 var(--fw-space-12);
+  border: var(--fw-border-strong);
+  border-radius: var(--fw-radius-control);
+  background: var(--fw-surface-base);
+  color: var(--fw-text-primary);
+}
+.input::placeholder { color: var(--fw-text-quiet); }
+.input:focus-visible { outline: 2px solid var(--fw-focus-ring); outline-offset: 2px; }

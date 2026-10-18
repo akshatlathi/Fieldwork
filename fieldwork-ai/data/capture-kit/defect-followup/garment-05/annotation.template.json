@@ -1,0 +1,39 @@
+{
+  "garment_id": "garment-05",
+  "split": "development",
+  "annotation_status": "pending_owner_localization_and_photos",
+  "reported_issues": [
+    {
+      "reported_description": "Back hole",
+      "side": null,
+      "exact_location": null,
+      "size_mm": null,
+      "visible_in_supplied_closeups": null,
+      "media": [],
+      "owner_confirmed_present": true,
+      "visibility_in_original_media": "not_visible_due_to_folds",
+      "eligible_for_visible_defect_recall": false
+    },
+    {
+      "reported_description": "Red stain near hip",
+      "front_or_back": null,
+      "side": null,
+      "exact_location": null,
+      "size_mm": null,
+      "visible_in_supplied_closeups": null,
+      "media": [],
+      "owner_confirmed_present": true,
+      "visibility_in_original_media": "not_visible_due_to_folds",
+      "eligible_for_visible_defect_recall": false
+    },
+    {
+      "reported_description": "Front dark marks/spots; cause unknown",
+      "side": null,
+      "exact_location": null,
+      "visible_in_supplied_closeups": null,
+      "media": []
+    }
+  ],
+  "reviewers": [],
+  "notes": "Owner confirms hidden/unclear defects in the original media. New unfolded context and close-ups are pending; actual close-up visibility and location remain unfilled."
+}

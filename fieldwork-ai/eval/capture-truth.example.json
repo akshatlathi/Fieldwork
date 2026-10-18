@@ -1,0 +1,25 @@
+{
+  "garment_id": "garment-01",
+  "comparison_group": "garment-01",
+  "split": "development",
+  "seller_video": "take.mp4",
+  "seller_photos": ["photo-1.jpg", "photo-2.jpg", "photo-3.jpg"],
+  "code": "K7Q2",
+  "received_video": "unbox/take.mp4",
+  "received_photos": [],
+  "same_garment": true,
+  "actual_change": false,
+  "expected_assessment": "consistent",
+  "known_flaws": [],
+  "changes": [],
+  "buyer_questions": [
+    {
+      "question": "Can you establish how the garment smells?",
+      "expected_state": "cant_judge",
+      "reference_answer": "Smell cannot be established from these photos or video."
+    }
+  ],
+  "reference_notes": "EXAMPLE ONLY: replace with independent observations before running models.",
+  "reference_reviewers": ["replace-with-reviewer-name"],
+  "synthetic": false
+}

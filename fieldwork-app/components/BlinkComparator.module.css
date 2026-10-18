@@ -1,0 +1,7 @@
+.box { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; border: var(--fw-border-strong); border-radius: var(--fw-radius-feature); overflow: hidden; background: var(--fw-surface-inset); cursor: pointer; }
+.box:focus-visible { outline: 2px solid var(--fw-focus-ring); outline-offset: 2px; }
+.img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; }
+.img[data-on="true"] { opacity: 1; }
+.label, .hint { position: absolute; padding: var(--fw-space-1) var(--fw-space-2); background: var(--fw-glass-dark-bg); color: var(--fw-text-on-dark); border-radius: var(--fw-radius-sm); }
+.label { top: var(--fw-space-2); left: var(--fw-space-2); text-transform: uppercase; letter-spacing: 0.06em; }
+.hint { bottom: var(--fw-space-2); right: var(--fw-space-2); display: inline-flex; align-items: center; gap: var(--fw-space-1); }

@@ -1,0 +1,57 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--fw-scrim);
+  animation: fade var(--fw-dur-standard) var(--fw-ease) both;
+}
+
+/* Keeps a modal sheet inside the 390px column on wide screens. */
+.frame {
+  position: fixed;
+  z-index: 50;
+  bottom: 0;
+  left: 50%;
+  width: min(100vw, var(--fw-column-width));
+  transform: translateX(-50%);
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fw-space-4);
+  padding: var(--fw-space-3) var(--fw-space-4) calc(var(--fw-space-6) + env(safe-area-inset-bottom));
+  border-radius: var(--fw-radius-sheet) var(--fw-radius-sheet) 0 0;
+  background: var(--fw-surface-base);
+  color: var(--fw-text-primary);
+  box-shadow: var(--fw-elev-3);
+  outline: none;
+}
+
+.modal { animation: rise var(--fw-dur-standard) var(--fw-ease) both; }
+.dock { animation: rise var(--fw-dur-emphasis) var(--fw-ease) both; }
+
+.dark {
+  background: var(--fw-surface-dark);
+  color: var(--fw-text-on-dark);
+}
+
+.grabber {
+  align-self: center;
+  width: var(--fw-space-8);
+  height: var(--fw-space-1);
+  border-radius: 2px;
+  background: var(--fw-geometry);
+}
+.dark .grabber { background: var(--fw-camera-line-quiet); }
+
+.title { margin: 0; }
+
+@keyframes rise {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,37 @@
+.root {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--fw-space-1);
+  margin: 0;
+  padding: 0;
+  color: var(--fw-text-primary);
+}
+
+.step { display: flex; flex-direction: column; gap: var(--fw-space-2); }
+
+.bar {
+  display: block;
+  height: var(--fw-space-1);
+  border-radius: 2px;
+  background: var(--fw-geometry);
+  transition: background var(--fw-dur-standard) var(--fw-ease);
+}
+.done .bar { background: var(--fw-brand-mineral); }
+.current .bar { background: var(--fw-brand-forest); }
+
+.labelled { gap: var(--fw-space-2); }
+.name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fw-space-1);
+  color: var(--fw-text-quiet);
+}
+.done .name { color: var(--fw-text-secondary); }
+.current .name { color: var(--fw-text-primary); font-weight: 600; }
+.index { color: inherit; }
+
+/* On camera surface */
+.onDark .bar { background: var(--fw-camera-line-quiet); }
+.onDark .done .bar { background: var(--fw-camera-line); }
+.onDark .current .bar { background: var(--fw-neutral-paper); }

@@ -1,0 +1,26 @@
+.group {
+  display: inline-flex;
+  padding: 2px;
+  border: var(--fw-border-default);
+  border-radius: var(--fw-radius-control);
+  background: var(--fw-surface-inset);
+}
+
+.option {
+  min-width: var(--fw-space-16);
+  min-height: 44px;
+  padding: 0 var(--fw-space-3);
+  border: 0;
+  border-radius: var(--fw-radius-sm);
+  background: transparent;
+  color: var(--fw-text-secondary);
+  font-weight: 500;
+}
+.option:hover { color: var(--fw-text-primary); }
+
+.selected {
+  background: var(--fw-surface-base);
+  color: var(--fw-text-primary);
+  font-weight: 600;
+  box-shadow: var(--fw-elev-1);
+}

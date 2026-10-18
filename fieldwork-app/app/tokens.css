@@ -1,0 +1,164 @@
+/*
+  FIELDWORK DESIGN TOKENS
+  Source of truth: DESIGN.md sections 4-10, 43-45.
+  Layers: primitive (--fw-brand/neutral/semantic) -> semantic (--fw-surface/text/border)
+          -> component (--fw-btn/chip/...) -> host-theme override ([data-host-theme]).
+*/
+:root {
+  /* ---------- PRIMITIVE: brand (DESIGN.md 4.1) ---------- */
+  --fw-brand-forest: #123A34;
+  --fw-brand-mineral: #2F6C63;
+  --fw-brand-mineral-dark: #24574F;
+  --fw-brand-sage: #82978F;
+  --fw-brand-oxide: #B6784D;
+
+  /* ---------- PRIMITIVE: neutrals ---------- */
+  --fw-neutral-parchment: #F3EFE6;
+  --fw-neutral-paper: #FAF8F3;
+  --fw-neutral-inset: #ECE9E0;
+  --fw-neutral-stone: #C9C1B4;
+  --fw-neutral-ink: #171C19;
+  --fw-neutral-graphite: #4E5853;
+  --fw-neutral-muted: #737B76;
+  --fw-neutral-white: #FFFFFF;
+
+  /* ---------- PRIMITIVE: semantic states (fixed across hosts, 4.3) ---------- */
+  --fw-match-fg: #28644F;
+  --fw-match-bg: #E4EEE8;
+  --fw-match-border: #BFD7CA;
+
+  --fw-not-shown-fg: #646863;
+  --fw-not-shown-bg: #ECEBE6;
+  --fw-not-shown-border: #D6D4CD;
+
+  --fw-differs-fg: #A65342;
+  --fw-differs-bg: #F4E4DE;
+  --fw-differs-border: #E2BEB4;
+
+  --fw-cant-tell-fg: #8A6A2E;
+  --fw-cant-tell-bg: #F1E9D5;
+  --fw-cant-tell-border: #DCC990;
+
+  --fw-system-fg: #5E5A96;
+  --fw-system-bg: #ECEAF7;
+  --fw-system-border: #CDC9E7;
+
+  --fw-money-fg: #2D5B88;
+  --fw-money-bg: #E7EEF6;
+  --fw-money-border: #C5D5E7;
+
+  /* ---------- SPACING (4px grid, section 6) ---------- */
+  --fw-space-1: 4px;
+  --fw-space-2: 8px;
+  --fw-space-3: 12px;
+  --fw-space-4: 16px;
+  --fw-space-5: 20px;
+  --fw-space-6: 24px;
+  --fw-space-8: 32px;
+  --fw-space-10: 40px;
+  --fw-space-12: 48px;
+  --fw-space-16: 64px;
+  --fw-space-20: 80px;
+  --fw-space-24: 96px;
+
+  --fw-page-gutter-mobile: 16px;
+  --fw-page-gutter-desktop: 32px;
+  --fw-touch-min: 48px;
+  --fw-column-width: 390px;
+
+  /* ---------- RADIUS (section 7) ---------- */
+  --fw-radius-sm: 4px;
+  --fw-radius-control: 8px;
+  --fw-radius-card: 12px;
+  --fw-radius-feature: 16px;
+  --fw-radius-sheet: 20px;
+  --fw-radius-hero: 24px;
+  --fw-radius-pill: 999px; /* statuses and tags only */
+
+  /* ---------- BORDERS (section 8) ---------- */
+  --fw-border-default: 1px solid rgba(23, 28, 25, 0.10);
+  --fw-border-strong: 1px solid rgba(23, 28, 25, 0.16);
+  --fw-border-subtle: 1px solid rgba(23, 28, 25, 0.06);
+  --fw-hairline: rgba(23, 28, 25, 0.10);
+  --fw-hairline-strong: rgba(23, 28, 25, 0.16);
+  --fw-hairline-subtle: rgba(23, 28, 25, 0.06);
+
+  /* ---------- ELEVATION (section 9) ---------- */
+  --fw-elev-0: none;
+  --fw-elev-1: 0 1px 2px rgba(20, 32, 28, 0.06), 0 4px 14px rgba(20, 32, 28, 0.05);
+  --fw-elev-2: 0 6px 20px rgba(20, 32, 28, 0.08);
+  --fw-elev-3: 0 14px 40px rgba(20, 32, 28, 0.10);
+
+  /* ---------- TYPE FAMILIES (section 5.1) ---------- */
+  --fw-font-sans: var(--font-plex-sans), var(--font-plex-devanagari), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fw-font-serif: var(--font-plex-serif), var(--font-plex-devanagari), Georgia, serif;
+  --fw-font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --fw-font-devanagari: var(--font-plex-devanagari), var(--font-plex-sans), system-ui, sans-serif;
+
+  /* ---------- TYPE SCALE: size / line-height (section 5.2) ---------- */
+  --fw-fs-display-xl: 56px;  --fw-lh-display-xl: 64px;
+  --fw-fs-display-l: 44px;   --fw-lh-display-l: 52px;
+  --fw-fs-display-m: 36px;   --fw-lh-display-m: 44px;
+  --fw-fs-heading-xl: 32px;  --fw-lh-heading-xl: 40px;
+  --fw-fs-heading-l: 28px;   --fw-lh-heading-l: 36px;
+  --fw-fs-heading-m: 24px;   --fw-lh-heading-m: 32px;
+  --fw-fs-heading-s: 20px;   --fw-lh-heading-s: 28px;
+  --fw-fs-body-l: 18px;      --fw-lh-body-l: 28px;
+  --fw-fs-body: 16px;        --fw-lh-body: 24px;
+  --fw-fs-body-s: 14px;      --fw-lh-body-s: 20px;
+  --fw-fs-label: 13px;       --fw-lh-label: 18px;
+  --fw-fs-meta: 12px;        --fw-lh-meta: 16px;
+  --fw-fs-caption: 12px;     --fw-lh-caption: 16px;
+  --fw-fs-button: 15px;      --fw-lh-button: 20px;
+  --fw-fs-overline: 11px;    --fw-lh-overline: 16px;
+  --fw-fs-numeric-xl: 40px;  --fw-lh-numeric-xl: 44px;
+  --fw-fs-numeric-l: 32px;   --fw-lh-numeric-l: 36px;
+  --fw-fs-numeric-m: 24px;   --fw-lh-numeric-m: 28px;
+
+  /* ---------- MOTION (section 34) ---------- */
+  --fw-dur-instant: 80ms;
+  --fw-dur-micro: 140ms;
+  --fw-dur-standard: 220ms;
+  --fw-dur-emphasis: 320ms;
+  --fw-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---------- SEMANTIC LAYER ---------- */
+  --fw-surface-canvas: var(--fw-neutral-parchment);
+  --fw-surface-base: var(--fw-neutral-paper);
+  --fw-surface-inset: var(--fw-neutral-inset);
+  --fw-surface-dark: var(--fw-brand-forest);
+  --fw-surface-ghost: rgba(255, 255, 255, 0.55);
+  --fw-surface-camera: var(--fw-neutral-ink);
+
+  --fw-text-primary: var(--fw-neutral-ink);
+  --fw-text-secondary: var(--fw-neutral-graphite);
+  --fw-text-quiet: var(--fw-neutral-muted);
+  --fw-text-on-dark: var(--fw-neutral-paper);
+  --fw-text-on-dark-quiet: rgba(250, 248, 243, 0.72);
+
+  --fw-geometry: var(--fw-neutral-stone);       /* crop marks, dividers, inactive geometry */
+  --fw-accent-editorial: var(--fw-brand-oxide);  /* tiny markers only, under 3% */
+
+  --fw-focus-ring: var(--fw-brand-mineral);
+  --fw-focus-ring-on-dark: var(--fw-neutral-paper);
+
+  /* ---------- COMPONENT LAYER ---------- */
+  --fw-btn-primary-bg: var(--fw-host-primary);
+  --fw-btn-primary-bg-hover: var(--fw-host-primary-strong);
+  --fw-btn-primary-fg: var(--fw-host-on-primary);
+  --fw-chip-selected-bg: color-mix(in srgb, var(--fw-brand-mineral) 12%, var(--fw-neutral-paper));
+  --fw-chip-selected-border: var(--fw-brand-mineral);
+  --fw-glass-dark-bg: rgba(23, 28, 25, 0.56);          /* camera overlays only (section 40) */
+  --fw-glass-dark-border: rgba(250, 248, 243, 0.18);
+  --fw-scrim: rgba(23, 28, 25, 0.40);
+  --fw-camera-line: rgba(250, 248, 243, 0.72);
+  --fw-camera-line-quiet: rgba(250, 248, 243, 0.28);
+}
+
+/* ---------- HOST THEME CONTRACT (section 45) ---------- */
+:root,
+[data-host-theme] {
+  --fw-host-primary: var(--fw-brand-mineral);
+  --fw-host-primary-strong: var(--fw-brand-mineral-dark);
+  --fw-host-on-primary: #FFFFFF;
+}

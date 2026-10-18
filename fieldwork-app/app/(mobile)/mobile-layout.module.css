@@ -1,0 +1,24 @@
+.canvas {
+  min-height: 100dvh;
+  background: var(--fw-surface-canvas);
+}
+
+.column {
+  position: relative;
+  width: 100%;
+  max-width: var(--fw-column-width);
+  min-height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--fw-surface-canvas);
+  padding-bottom: 108px;
+  background-image: radial-gradient(ellipse at 5% 0%,#FFFFFFA8,transparent 55%);
+}
+
+@media (min-width: 431px) {
+  .column {
+    border-left: var(--fw-border-default);
+    border-right: var(--fw-border-default);
+  }
+}

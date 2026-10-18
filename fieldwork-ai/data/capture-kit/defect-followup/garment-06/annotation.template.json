@@ -1,0 +1,21 @@
+{
+  "garment_id": "garment-06",
+  "split": "development",
+  "annotation_status": "pending_owner_localization_and_photos",
+  "reported_issues": [
+    {
+      "reported_description": "Hole near hip",
+      "front_or_back": null,
+      "side": null,
+      "exact_location": null,
+      "size_mm": null,
+      "visible_in_supplied_closeups": null,
+      "media": [],
+      "owner_confirmed_present": true,
+      "visibility_in_original_media": "unclear_not_properly_visible",
+      "eligible_for_visible_defect_recall": false
+    }
+  ],
+  "reviewers": [],
+  "notes": "Owner confirms hidden/unclear defects in the original media. New unfolded context and close-ups are pending; actual close-up visibility and location remain unfilled."
+}

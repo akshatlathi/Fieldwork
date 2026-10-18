@@ -1,0 +1,28 @@
+.list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  border-bottom: var(--fw-border-default);
+}
+
+.tab {
+  position: relative;
+  min-height: var(--fw-touch-min);
+  padding: 0 var(--fw-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--fw-text-secondary);
+  font-weight: 500;
+}
+.tab:hover { background: var(--fw-surface-inset); }
+
+.selected { color: var(--fw-text-primary); font-weight: 600; }
+.selected::after {
+  content: "";
+  position: absolute;
+  left: var(--fw-space-3);
+  right: var(--fw-space-3);
+  bottom: -1px;
+  height: 2px;
+  background: var(--fw-brand-forest);
+}

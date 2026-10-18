@@ -1,0 +1,32 @@
+.card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--fw-space-4);
+  padding: var(--fw-space-3);
+  border: var(--fw-border-default);
+  border-radius: var(--fw-radius-card);
+  background: var(--fw-surface-base);
+  transition: background var(--fw-dur-micro) var(--fw-ease);
+}
+.card:hover { background: var(--fw-surface-ghost); }
+.card:active { background: var(--fw-surface-inset); }
+
+.photo { align-self: start; }
+
+.body { display: flex; flex-direction: column; gap: var(--fw-space-1); min-width: 0; }
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--fw-space-2);
+}
+.titleRow h3, .titleRow p { margin: 0; }
+.titleRow h3 { font-weight: 600; }
+
+.attrs { margin: 0; color: var(--fw-text-secondary); }
+.where { margin: 0; color: var(--fw-text-quiet); }
+.body > :last-child { margin-top: var(--fw-space-2); }
+
+.static:hover,
+.static:active { background: var(--fw-surface-base); }

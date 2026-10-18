@@ -1,0 +1,31 @@
+/* Fieldwork / Porcelain & Smoke. Shared identity, 18 October 2026. */
+:root{
+--fw-brand-forest:#302B27;--fw-brand-mineral:#53483E;--fw-brand-mineral-dark:#28231F;--fw-brand-sage:#B0A495;--fw-brand-oxide:#A77955;
+--fw-neutral-parchment:#EDE7DF;--fw-neutral-paper:#FBF8F4;--fw-neutral-inset:#E4DDD4;--fw-neutral-stone:#C9BBAA;--fw-neutral-ink:#27231F;--fw-neutral-graphite:#625950;--fw-neutral-muted:#74685D;
+--fw-font-sans:var(--font-instrument),system-ui,-apple-system,"Segoe UI",sans-serif;--fw-font-serif:var(--fw-font-sans);--fw-font-mono:ui-monospace,"Cascadia Code",monospace;--fw-font-devanagari:system-ui,sans-serif;
+--fw-column-width:460px;--fw-page-gutter-mobile:22px;--fw-radius-control:24px;--fw-radius-card:24px;--fw-radius-feature:30px;--fw-radius-sheet:32px;--fw-fs-display-m:46px;--fw-lh-display-m:49px;
+--fw-surface-base:rgba(255,252,248,.82);--fw-surface-ghost:rgba(255,252,248,.65);--fw-text-on-dark-quiet:#E4D8C9;--fw-host-primary:#37302A;--fw-host-primary-strong:#211D19;
+--fw-chip-selected-bg:#E1D5C6;--fw-chip-selected-border:#8B7158;--fw-focus-ring:#825A35;--fw-glass-dark-bg:rgba(55,47,40,.80);--fw-glass-dark-border:rgba(255,244,227,.55);
+--fw-match-fg:#3F5445;--fw-match-bg:#E9EDE6;--fw-match-border:#B8C3B5;--fw-money-fg:#4D4033;--fw-money-bg:#E8DDCF;--fw-money-border:#C5B197;--fw-system-fg:#554C43;--fw-system-bg:#EDE7DF;--fw-system-border:#CEC2B4;
+--fw-elev-1:0 8px 22px #4A342014,inset 0 1px 0 #FFFFFFA0;--fw-elev-2:0 14px 40px #4A342023,inset 0 1px 0 #FFFFFFCC;
+}
+body{background:#D4C9BC}.t-display-m{font-weight:600;letter-spacing:-.055em}.t-heading-l,.t-heading-m,.t-heading-s{letter-spacing:-.035em}
+.fw-preview-label{font-size:8px;letter-spacing:.06em;text-align:center;padding:5px;background:#DED2C2;color:#665440}.fw-arrival-image{height:250px;background:#F5EFE6;border-radius:24px;overflow:hidden}.fw-arrival-image>img{width:100%;height:100%;object-fit:contain}.fw-confirm-dialog{max-width:400px;width:calc(100% - 30px);border:1px solid white;padding:24px;background:#F8F1E6;border-radius:26px}.fw-confirm-dialog::backdrop{background:#251B13AA;backdrop-filter:blur(6px)}.fw-confirm-dialog>*+*{margin-top:16px}
+[hidden]{display:none!important}.purchase-image{width:100%;height:100%;object-fit:contain}.fw-agent-product{display:block;height:240px;overflow:hidden;border-radius:18px;background:#F6F2EA}.fw-agent-product>img{width:100%;height:100%;object-fit:contain}.fw-agent-intro{display:flex;flex-direction:column;gap:15px}.fw-agent-intro .t-display-m{font-size:40px;line-height:1.06}.fw-plan{list-style:decimal;padding-left:20px;display:flex;flex-direction:column;gap:9px;font-size:13px;margin-bottom:15px}.fw-stage-nav{display:flex;gap:7px}.fw-stage-nav button{flex:1;min-height:62px;display:flex;flex-direction:column;gap:7px;align-items:flex-start;text-align:left;padding:11px;border-radius:16px;border:1px solid #D5C5B3;background:#F8F3EC;font-size:11px}.fw-stage-nav button>span{font-size:9px;color:#856D53}.fw-stage-nav button[aria-pressed=true]{background:#4B3F33;color:#FFF7EC;border-color:#F5D8B5}.fw-stage-nav button[aria-pressed=true]>span{color:#D8B892}
+button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button:disabled{cursor:not-allowed}
+input[type=file]{font-size:13px}input[type=file]::file-selector-button{padding:9px 12px;border:0;border-radius:999px;margin-right:8px;background:#E3D8CA;color:#352B23;font:inherit}
+input[type=checkbox],input[type=radio]{accent-color:#7A5C3F;width:19px;height:19px;flex-shrink:0}
+summary{list-style:none}summary::after{content:'+';margin-left:auto;padding-left:12px}details[open]>summary::after{content:'−'}
+.fw-section-number{font-size:11px;font-weight:600;letter-spacing:.16em;color:#796854}.fw-disclosure{font-size:11px;color:#6B5E51;line-height:1.5}
+.fw-progress{display:flex;gap:8px;padding:14px 0 4px}.fw-progress span{flex:1;border-top:2px solid #C8BFB4;padding-top:8px;font-size:11px;color:#74685D}.fw-progress span[data-active=true]{border-color:#6C4D31;color:#30251D;font-weight:600}
+
+/* Glass: one reusable translucent surface. Tokens first, then .fw-glass for TSX and var() use inside CSS modules. */
+:root{--fw-glass-bg:rgba(251,248,244,.6);--fw-glass-bg-solid:#F7F2EA;--fw-glass-blur:blur(16px) saturate(140%);--fw-glass-border:1px solid rgba(255,255,255,.5);--fw-glass-shadow:0 8px 28px rgba(74,52,32,.14),inset 0 1px 0 rgba(255,255,255,.55);}
+:root[data-theme="dark"]{--fw-glass-bg:rgba(48,43,39,.58);--fw-glass-bg-solid:#302B27;--fw-glass-border:1px solid rgba(255,255,255,.14);--fw-glass-shadow:0 8px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1);}
+.fw-glass{background:var(--fw-glass-bg-solid);background:var(--fw-glass-bg);border:var(--fw-glass-border);box-shadow:var(--fw-glass-shadow);-webkit-backdrop-filter:var(--fw-glass-blur);backdrop-filter:var(--fw-glass-blur)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fw-glass{background:var(--fw-glass-bg-solid)}}
+@media(prefers-reduced-transparency:reduce){.fw-glass{background:var(--fw-glass-bg-solid);-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Soft light behind the column so the blur has something to refract. */
+body{background:radial-gradient(60% 40% at 15% 8%,rgba(167,121,85,.28),transparent 70%),radial-gradient(55% 38% at 90% 35%,rgba(176,164,149,.40),transparent 70%),radial-gradient(60% 40% at 20% 85%,rgba(167,121,85,.20),transparent 70%),#D4C9BC;background-attachment:fixed}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--fw-glass-bg:var(--fw-glass-bg-solid)}}
+@media(prefers-reduced-transparency:reduce){:root{--fw-glass-bg:var(--fw-glass-bg-solid);--fw-glass-blur:none}}
